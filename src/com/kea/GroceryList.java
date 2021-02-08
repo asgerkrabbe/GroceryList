@@ -3,33 +3,50 @@ package com.kea;
 import java.util.ArrayList;
 
 public class GroceryList {
-    ArrayList<Product> basket = new ArrayList<>();
+    GroceryItem groceryItem = new GroceryItem();
+
+    ArrayList<GroceryItem> itemArrayList = new ArrayList<>();
 
 
     public static void main(String[] args) {
-        GroceryItem groceryItem = new GroceryItem();
+
         GroceryList groceryList = new GroceryList();
         Product product = new Product();
-        product.productLine();
-        groceryList.showProducts();
+        groceryList.createList();
+
+        for(GroceryItem var:groceryList.itemArrayList)
+
+        System.out.println(groceryList.itemArrayList.get(0));
+
+        groceryList.getTotalCost();
     }
 
-
-    public void showProducts(){
-        Product product = new Product();
-
-        for (int i = 0; i < product.productArrayList.size(); i++) {
-            System.out.println(product.productArrayList.get(i));
-        }
+    public void showProducts() {
     }
 
-
-    public void add(ArrayList basket) {
-    basket.add(basket);
+    public void createList() {
+        GroceryItem groceryItem1 = new GroceryItem(3, new Product("Mælk", 10));
+        GroceryItem groceryItem2 = new GroceryItem(1, new Product("Pasta", 7));
+        GroceryItem groceryItem3 = new GroceryItem(2, new Product("Smør", 15));
+        addItem(groceryItem1, itemArrayList);
+        addItem(groceryItem2, itemArrayList);
+        addItem(groceryItem3, itemArrayList);
     }
 
+    public void addItem(GroceryItem groceryItem, ArrayList<GroceryItem> groceryItemOrder) {
+
+    groceryItemOrder.add(groceryItem);
+
+    }
+
+    int totalCost = 0;
     public void getTotalCost() {
+        for (int i = 0; i < itemArrayList.size(); i++) {
+            totalCost += itemArrayList.get(i).getCost();
 
+        }
+        System.out.println(totalCost);
     }
+
 
 }
